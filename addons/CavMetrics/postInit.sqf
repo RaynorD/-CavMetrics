@@ -4,19 +4,46 @@
 if !(isServer || !hasInterface) exitWith {};
 _cba = (isClass(configFile >> "CfgPatches" >> "cba_a3"));
 
-diag_log text format ["[CavMetrics] instance name: %1", profileName];
+_fnc_log = {
+    params ["_text"];
+    _text = format ["%1",_text];
+
+    if(isServer) then {
+        diag_log _text;
+        if(isMultiplayer) then {
+            _playerIds = [];
+            { // loop  all players
+                _player = _x;
+                _ownerId = owner _player;
+                if(_ownerId > 0) then { // if not server
+                    { // loop debug players
+                        if(getPlayerUID _player in ["76561198016398166"]) then {
+                            _playerIds pushBack _ownerId;
+                        };
+                    } foreach CavMetrics_debugPlayers;
+                };
+            } foreach allPlayers;
+            
+            if(count _playerIds > 0) then {
+                [_text] remoteExec ["diag_log", _playerIds];
+            };
+        };
+    };
+};
+
+[format ["[CavMetrics] instance name: %1", profileName]] call _fnc_log;
 
 _fnc_send = {
     params ["_metric", "_value", ["_global", false]];
     _profileName = profileName;
     private _metricPath = [format["%1.%2.%3", _profileName, "hosts", profileName], format["%1.%2", _profileName, "global"]] select _global;
     if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
-        diag_log text format ["[CavMetrics] Sending a3Graphite data: %1",[format["%1.%2", _metricPath, _metric], _value]];
+        [format ["[CavMetrics] Sending a3Graphite data: %1",[format["%1.%2", _metricPath, _metric], _value]]] call _fnc_log;
     };
     "a3graphite" callExtension format["%1|%2", format["%1.%2", _metricPath, _metric], _value];
 };
 
-diag_log text "[CavMetrics] Initializing";
+["[CavMetrics] Initializing"] call _fnc_log;
 
 [_cba, _fnc_send] spawn {
     params ["_cba","_fnc_send"];
