@@ -16,6 +16,7 @@ class CfgFunctions {
 			class postInit { postInit = 1;};
 			class log {};
 			class send {};
+			class run {};
 		};
 	};
 };
