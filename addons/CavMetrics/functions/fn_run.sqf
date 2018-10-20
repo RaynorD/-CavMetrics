@@ -3,7 +3,7 @@
 
 params ["_cba"];
 
-if(missionNamespace getVariable ["CavMetrics_run",false]) then {
+if(missionNamespace getVariable ["CavMetrics_run",false]) then {    
     // Number of local units
     ["count.units", { local _x } count allUnits] call CavMetrics_fnc_send;
     ["count.groups", { local _x } count allGroups] call CavMetrics_fnc_send;

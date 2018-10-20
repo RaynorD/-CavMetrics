@@ -13,12 +13,12 @@ if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
 private _return = "a3graphite" callExtension _extSend;
 
 if(isNil "_return") exitWith {
-    diag_log text format ["[CavMetrics] ERROR: return was nil (%1)", _extSend];
+    [format ["[CavMetrics] ERROR: return was nil (%1)", _extSend]] call CavMetrics_fnc_log;
     false
 };
 
 if(_return in ["invalid metric value","malformed, could not find separator"] ) exitWith {
-    diag_log text format ["[CavMetrics] ERROR: %1 (%2)", _return, _extSend];
+    [format ["[CavMetrics] ERROR: %1 (%2)", _return, _extSend]] call CavMetrics_fnc_log;
     false
 };
 
