@@ -1,8 +1,8 @@
-params [["_text","Log text nil"], ["_type","INFO"]];
-_text = format ["[CavMetrics] %1: %2", _type, _text];
+params [["_text","Log text invalid",[""]], ["_type","INFO",[""]]];
+private _textFormatted = format ["[CavMetrics] %1: %2", _type, _text];
 
 if(isServer) then {
-    diag_log text _text;
+    diag_log text _textFormatted;
     if(isMultiplayer) then {
         _playerIds = [];
         {
@@ -16,7 +16,7 @@ if(isServer) then {
         } foreach allPlayers;
         
         if(count _playerIds > 0) then {
-            [_text] remoteExec ["diag_log", _playerIds];
+            [_textFormatted] remoteExec ["diag_log", _playerIds];
         };
     };
 };
