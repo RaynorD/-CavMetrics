@@ -7,7 +7,7 @@ private _metricPath = [format["%1.%2.%3", _profileName, "hosts", profileName], f
 private _extSend = format["%1|%2", format["%1.%2", _metricPath, _metric], _value];
 
 if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
-    [format ["Sending a3Graphite data: %1", _extSend]] call CavMetrics_fnc_log;
+    [format ["Sending a3Graphite data: %1", _extSend], "DEBUG"] call CavMetrics_fnc_log;
 };
 
 private _return = "a3graphite" callExtension _extSend;
@@ -24,7 +24,7 @@ if(_return in ["invalid metric value","malformed, could not find separator"] ) e
 
 if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
     _returnArgs = _return splitString (toString [10,32]);
-    [format ["a3Graphite return data: %1",_returnArgs]] call CavMetrics_fnc_log;
+    [format ["a3Graphite return data: %1",_returnArgs], "DEBUG"] call CavMetrics_fnc_log;
 };
 
 true

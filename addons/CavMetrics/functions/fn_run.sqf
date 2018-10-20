@@ -35,7 +35,7 @@ if(missionNamespace getVariable ["CavMetrics_run",false]) then {
         ["count.players", count allPlayers, true] call CavMetrics_fnc_send;
     };
     if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
-        [format ["Run time: %1", diag_tickTime - _startTime]] call CavMetrics_fnc_log;
+        [format ["Run time: %1", diag_tickTime - _startTime], "DEBUG"] call CavMetrics_fnc_log;
         missionNamespace setVariable ["CavMetrics_debug",false];
     };
     
