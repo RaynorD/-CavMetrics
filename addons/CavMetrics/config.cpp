@@ -12,7 +12,10 @@ class CfgPatches {
 class CfgFunctions {
 	class CavMetrics {
 		class Common {
-			class postInit { postInit = 1; file = "\CavMetrics\postInit.sqf"; };
+			file = "\CavMetrics";
+			class postInit { postInit = 1;};
+			class log {};
+			class send {};
 		};
 	};
 };
