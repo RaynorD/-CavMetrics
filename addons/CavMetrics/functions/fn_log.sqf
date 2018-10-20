@@ -1,5 +1,5 @@
-params ["_text"];
-_text = format ["%1",_text];
+params [["_text","Log text nil"], ["_type","INFO"]];
+_text = format ["[CavMetrics] %1: %2", _type, _text];
 
 if(isServer) then {
     diag_log text _text;
