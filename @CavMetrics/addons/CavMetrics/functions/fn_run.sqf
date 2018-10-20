@@ -1,7 +1,8 @@
 
 // function adapted from YAINA by MartinCo at http://yaina.eu
 
-params ["_cba"];
+params ["_args"];
+_args params [["_cba",false,[true]]];
 
 if(missionNamespace getVariable ["CavMetrics_run",false]) then {
     private _startTime = diag_tickTime;
@@ -23,7 +24,7 @@ if(missionNamespace getVariable ["CavMetrics_run",false]) then {
     ["scripts.exec", _activeScripts select 2] call CavMetrics_fnc_send;
     ["scripts.execFSM", _activeScripts select 3] call CavMetrics_fnc_send;
     
-    private _pfhCount = if(_cba) then {count CBA_perFrameHandlerArray} else {0};
+    private _pfhCount = if(_cba) then {count CBA_common_perFrameHandlerArray} else {0};
     ["scripts.pfh", _pfhCount] call CavMetrics_fnc_send;
     
     // Globals if server
@@ -38,5 +39,4 @@ if(missionNamespace getVariable ["CavMetrics_run",false]) then {
         [format ["Run time: %1", diag_tickTime - _startTime], "DEBUG"] call CavMetrics_fnc_log;
         missionNamespace setVariable ["CavMetrics_debug",false];
     };
-    
 };

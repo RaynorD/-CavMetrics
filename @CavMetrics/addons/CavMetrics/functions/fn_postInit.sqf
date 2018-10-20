@@ -2,7 +2,7 @@
 // function adapted from YAINA by MartinCo at http://yaina.eu
 
 if !(isServer || !hasInterface) exitWith {};
-_cba = (isClass(configFile >> "CfgPatches" >> "cba_a3"));
+_cba = (isClass(configFile >> "CfgPatches" >> "cba_main"));
 
 [format ["Instance name: %1", profileName]] call CavMetrics_fnc_log;
 [format ["CBA detected: %1", _cba]] call CavMetrics_fnc_log;
@@ -16,7 +16,7 @@ if(_cba) then { // CBA is running, use PFH
     [_cba] spawn {
         params ["_cba"];
         while{true} do {
-            [_cba] call CavMetrics_fnc_run;
+            [[_cba]] call CavMetrics_fnc_run;
             sleep 10;
         };
     };
