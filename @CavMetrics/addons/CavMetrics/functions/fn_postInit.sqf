@@ -16,7 +16,7 @@ if(_cba) then { // CBA is running, use PFH
     [_cba] spawn {
         params ["_cba"];
         while{true} do {
-            [[_cba]] call CavMetrics_fnc_run;
+            [[_cba]] call CavMetrics_fnc_run; // nested to match CBA PFH signature
             sleep 10;
         };
     };

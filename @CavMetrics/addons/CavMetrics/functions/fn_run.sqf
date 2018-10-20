@@ -35,6 +35,8 @@ if(missionNamespace getVariable ["CavMetrics_run",false]) then {
         ["count.vehicles", count vehicles, true] call CavMetrics_fnc_send;
         ["count.players", count allPlayers, true] call CavMetrics_fnc_send;
     };
+    
+    // log the runtime and switch off debug so it doesn't flood the log
     if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
         [format ["Run time: %1", diag_tickTime - _startTime], "DEBUG"] call CavMetrics_fnc_log;
         missionNamespace setVariable ["CavMetrics_debug",false];

@@ -11,24 +11,25 @@ if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
     [format ["Sending a3Graphite data: %1", _extSend], "DEBUG"] call CavMetrics_fnc_log;
 };
 
+// send the data
 private _return = "a3graphite" callExtension _extSend;
 
+// shouldn't be possible, the extension should always return even if error
 if(isNil "_return") exitWith {
     [format ["return was nil (%1)", _extSend], "ERROR"] call CavMetrics_fnc_log;
     false
 };
 
+// extension error codes
 if(_return in ["invalid metric value","malformed, could not find separator"] ) exitWith {
     [format ["%1 (%2)", _return, _extSend], "ERROR"] call CavMetrics_fnc_log;
     false
 };
 
+// success, only show if debug is set
 if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
     _returnArgs = _return splitString (toString [10,32]);
     [format ["a3Graphite return data: %1",_returnArgs], "DEBUG"] call CavMetrics_fnc_log;
 };
 
 true
-
-//"Raynor.global.count.unitTest 5 1540003701
-//"
