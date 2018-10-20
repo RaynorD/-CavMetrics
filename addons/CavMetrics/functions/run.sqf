@@ -1,4 +1,6 @@
 
+// function adapted from YAINA by MartinCo at http://yaina.eu
+
 params ["_cba"];
 
 if(missionNamespace getVariable ["CavMetrics_run",false]) then {

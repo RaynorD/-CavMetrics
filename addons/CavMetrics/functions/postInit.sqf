@@ -1,5 +1,5 @@
 
-// functions adapted from YAINA by MartinCo at http://yaina.eu
+// function adapted from YAINA by MartinCo at http://yaina.eu
 
 if !(isServer || !hasInterface) exitWith {};
 _cba = (isClass(configFile >> "CfgPatches" >> "cba_a3"));
