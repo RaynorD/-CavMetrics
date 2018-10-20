@@ -4,7 +4,7 @@
 params ["_cba"];
 
 if(missionNamespace getVariable ["CavMetrics_run",false]) then {
-    _startTime = diag_tickTime;
+    private _startTime = diag_tickTime;
     // Number of local units
     ["count.units", { local _x } count allUnits] call CavMetrics_fnc_send;
     ["count.groups", { local _x } count allGroups] call CavMetrics_fnc_send;
@@ -35,7 +35,8 @@ if(missionNamespace getVariable ["CavMetrics_run",false]) then {
         ["count.players", count allPlayers, true] call CavMetrics_fnc_send;
     };
     if(missionNamespace getVariable ["CavMetrics_debug",false]) then {
+        [format ["Run time: %1", diag_tickTime - _startTime]] call CavMetrics_fnc_log;
         missionNamespace setVariable ["CavMetrics_debug",false];
     };
-    [format ["Run time: %1", diag_tickTime - _startTime]] call CavMetrics_fnc_log;
+    
 };
