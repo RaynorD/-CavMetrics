@@ -12,7 +12,7 @@ class CfgPatches {
 class CfgFunctions {
 	class CavMetrics {
 		class Common {
-			file = "\CavMetrics";
+			file = "\CavMetrics\functions";
 			class postInit { postInit = 1;};
 			class log {};
 			class send {};
