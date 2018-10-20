@@ -2,7 +2,7 @@ params ["_metric", "_value", ["_global", false]];
 
 private _profileName = profileName;
 
-private _metricPath = [format["%1.%2.%3", _profileName, "hosts", profileName], format["%1.%2", _profileName, "global"]] select _global;
+private _metricPath = [format["GameServers.Arma3.%1.%2.%3", _profileName, "hosts", profileName], format["%1.%2", _profileName, "global"]] select _global;
 
 private _extSend = format["%1|%2", format["%1.%2", _metricPath, _metric], _value];
 
