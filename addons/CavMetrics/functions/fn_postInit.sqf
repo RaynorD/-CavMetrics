@@ -5,7 +5,7 @@ if !(isServer || !hasInterface) exitWith {};
 _cba = (isClass(configFile >> "CfgPatches" >> "cba_a3"));
 
 [format ["[CavMetrics] instance name: %1", profileName]] call CavMetrics_fnc_log;
-[format ["[CavMetrics] CBA detected: %1", _cba] call CavMetrics_fnc_log;
+[format ["[CavMetrics] CBA detected: %1", _cba]] call CavMetrics_fnc_log;
 ["[CavMetrics] Initializing v1.1"] call CavMetrics_fnc_log;
 
 CavMetrics_run = true;
