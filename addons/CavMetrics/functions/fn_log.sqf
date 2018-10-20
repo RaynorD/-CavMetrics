@@ -16,7 +16,7 @@ if(isServer) then {
         } foreach allPlayers;
         
         if(count _playerIds > 0) then {
-            [text _text] remoteExec ["diag_log", _playerIds];
+            [_text] remoteExec ["diag_log", _playerIds];
         };
     };
 };
