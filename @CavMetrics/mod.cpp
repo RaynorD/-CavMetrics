@@ -13,6 +13,6 @@ dlcColor[] =
 	1
 };
 overview = "Metrics for 7cav servers.";
-description = "Version 1.0.0";
-hideName = 0;
-hidePicture = 0;
+description = "Version 1.1.0";
+hideName = 1;
+hidePicture = 1;
